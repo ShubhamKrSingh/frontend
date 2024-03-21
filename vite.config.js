@@ -6,12 +6,13 @@ import http from "https";
 export default defineConfig({
   server: {
     proxy: {
-      '/api': {
+      "/api": {
         target: "https://backendwa-j4ck.onrender.com",
         changeOrigin: true,
         secure: false,
-        agent: new http.Agent()
+        agent: new http.Agent(),
       },
+    },
   },
   plugins: [react()],
 });
