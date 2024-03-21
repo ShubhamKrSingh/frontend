@@ -6,14 +6,29 @@ function App() {
   const [jokes, setJokes] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/jokes")
+    fetch("/api/jokes")
       .then((response) => {
-        setJokes(response.data);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Data received:", data);
+        setJokes(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error("There was a problem with the fetch operation:", error);
       });
+
+    // axios
+    //   .get("/api/jokes")
+    //   .then((response) => {
+    //     setJokes(response.data);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
   }, []);
 
   return (
