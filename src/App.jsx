@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/api/jokes")
+      .get("https://backendwa-j4ck.onrender.com/api/jokes")
       .then((response) => {
         setJokes(response.data);
       })
